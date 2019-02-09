@@ -1,5 +1,5 @@
-/*  
-    http://www.dailycoding.com/ 
+/*
+    http://www.dailycoding.com/
 */
 (function ($) {
     $.fn.imageLens = function (options) {
@@ -12,7 +12,7 @@
         var options = $.extend(defaults, options);
         var lensStyle = "background-position: 0px 0px;width: " + String(options.lensSize) + "px;height: " + String(options.lensSize)
             + "px;float: left;display: none;border-radius: " + String(options.lensSize / 2 + options.borderSize)
-            + "px;border: " + String(options.borderSize) + "px solid " + options.borderColor 
+            + "px;border: " + String(options.borderSize) + "px solid " + options.borderColor
             + ";background-repeat: no-repeat;position: absolute;";
 
         return this.each(function () {
@@ -56,9 +56,9 @@
                     topPos = String(((e.pageY - offset.top) * heightRatio - target.height() / 2) * (-1));
                     target.css({ backgroundPosition: leftPos + 'px ' + topPos + 'px' });
 
-                    leftPos = String(e.pageX - target.width() / 2);
-                    topPos = String(e.pageY - target.height() / 2);
-                    target.css({ left: leftPos + 'px', top: topPos + 'px' });
+                    leftPos = (e.pageX - target.width() / 2) - 100;
+                    topPos = (e.pageY - target.height() / 2) - 450;
+                    target.css({ left: String(leftPos) + 'px', top: String(topPos) + 'px' });
                 }
             }
         });
