@@ -55,12 +55,12 @@
                     target.show();
 
                     leftPos = String(((e.pageX - offset.left) * widthRatio - target.width() / 2) * (-1));
-                    topPos = String(((e.pageY - offset.top) * heightRatio - target.height() / 2) * (-1));
-                    target.css({ backgroundPosition: leftPos + 'px ' + topPos + 'px' });
+                    topPos = (((e.pageY - offset.top) * heightRatio - target.height() / 2) * (-1)) - 50;
+                    target.css({ backgroundPosition: leftPos + 'px ' + String(topPos) + 'px' });
 
                     leftPos = String(e.pageX - target.width() / 2);
-                    topPos = e.pageY - target.height() / 2;
-                    target.css({ left: leftPos + 'px', top: String(topPos - 100) + 'px' });
+                    topPos = String(e.pageY - target.height() / 2);
+                    target.css({ left: leftPos + 'px', top: topPos + 'px' });
                 }
             }
         });
