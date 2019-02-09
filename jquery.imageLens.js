@@ -60,7 +60,7 @@
 
                     leftPos = String(e.pageX - target.width() / 2);
                     topPos = e.pageY - target.height() / 2;
-                    target.css({ left: leftPos + 'px', top: String(topPos - 25) + 'px' });
+                    target.css({ left: leftPos + 'px', top: String(topPos - 60) + 'px' });
                 }
             }
         });
