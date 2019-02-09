@@ -23,9 +23,9 @@
             // Creating lens
             var target = $("<div style='" + lensStyle + "' id='zoom_div' class='" + options.lensCss + "'>&nbsp;</div>").appendTo($(this).parent());
             var targetSize = target.size();
-if (options.loadingImageSrc) { 
-  target.html('<img class="loading_image" src="' + options.loadingImageSrc + '">')
-}
+            if (options.loadingImageSrc) { 
+                target.html('<img class="loading_image" src="' + options.loadingImageSrc + '">')
+            }
             // Calculating actual size of image
             var imageSrc = options.imageSrc ? options.imageSrc : $(this).attr("src");
             var imageTag = "<img style='display:none;' src='" + imageSrc + "' />";
@@ -34,7 +34,7 @@ if (options.loadingImageSrc) {
             var heightRatio = 0;
 
             $(imageTag).load(function () {
-target.find('.loading_image').remove();
+                target.find('.loading_image').remove();
                 widthRatio = $(this).width() / obj.width();
                 heightRatio = $(this).height() / obj.height();
             }).appendTo($(this).parent());
@@ -51,8 +51,7 @@ target.find('.loading_image').remove();
 
                 if (leftPos < 0 || topPos < 0 || leftPos > obj.width() || topPos > obj.height()) {
                     target.hide();
-                }
-                else {
+                } else {
                     target.show();
 
                     leftPos = String(((e.pageX - offset.left) * widthRatio - target.width() / 2) * (-1));
@@ -60,8 +59,8 @@ target.find('.loading_image').remove();
                     target.css({ backgroundPosition: leftPos + 'px ' + topPos + 'px' });
 
                     leftPos = String(e.pageX - target.width() / 2);
-                    topPos = String(e.pageY - target.height() / 2);
-                    target.css({ left: leftPos + 'px', top: topPos + 'px' });
+                    topPos = e.pageY - target.height() / 2;
+                    target.css({ left: leftPos + 'px', top: String(topPos - 25) + 'px' });
                 }
             }
         });
