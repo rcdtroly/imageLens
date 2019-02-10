@@ -22,7 +22,7 @@
       }
 
       $mouseZoom.css({
-        'top': y - ($mouseZoom.height() / 2),
+        'top': y, // - ($mouseZoom.height() / 2)
         'left': x - ($mouseZoom.width() / 2),
         'background-position': (x / $(this).width() * 100) + '% ' + (y / $(this).height() * 100) + '%',
         'background-size': ($(this).width() * 6) + 'px ' + ($(this).height() * 6) + 'px'
