@@ -29,25 +29,25 @@
       });
       $mouseZoom.show();
     };
-    
+
     var touchStartHandler = function (e) {
       var $container = $(this);
       var $image = $(this).find('img');
       var $mouseZoom = $(this).find('.jsZoomMouse');
       var touchState = $container.data(touchStateKey);
-      
+
       // Prevent touch from simulating mouseclick/move
       if (e.cancelable) {
         e.preventDefault();
       }
-      
+
       loadHqImage($container);
-      
+
       $mouseZoom.hide();
       $image.css({ visibility: 'hidden' });
-      
+
       if (e.originalEvent.touches.length == 2) {
-        
+
         $image.css({ visibility: 'hidden' });
 
         touchState.startPinch = distance(
@@ -57,36 +57,36 @@
 
         touchState.startZoom = touchState.currentZoom;
         touchState.startPan = toPoint(e.originalEvent.touches[0]);
-        
+
       } else if (e.originalEvent.touches.length == 1) {
-        
+
         touchState.startPan = toPoint(e.originalEvent.touches[0]);
         touchState.startPosition = copyPoint(touchState.currentPosition);
-        
+
       }
-      
+
       applyTouch($container);
     };
-    
+
     var touchEndHandler = function (e) {
       var $container = $(this);
       var touchState = $container.data(touchStateKey);
-      
+
       // Prevent touch from simulating mouseclick/move
       if (e.cancelable) {
         e.preventDefault();
       }
-      
+
       if (e.originalEvent.touches.length == 1) {
-        
+
         touchState.startPan = toPoint(e.originalEvent.touches[0]);
         touchState.startPosition = copyPoint(touchState.currentPosition);
-        
+
       }
-      
+
       applyTouch($container);
     };
-    
+
     var touchMoveHandler = function (e) {
       var $container = $(this);
       var $mouseZoom = $(this).find('.jsZoomMouse');
@@ -94,7 +94,7 @@
       var touchState = $container.data(touchStateKey);
       var offset = $container.offset();
       var originalPosition = copyPoint(touchState.currentPosition);
-      
+
       var currentPan = toPoint(
           e.originalEvent.touches[0].pageX - offset.left,
           e.originalEvent.touches[0].pageY - offset.top
@@ -145,16 +145,16 @@
       }
 
     };
-    
+
     var applyTouch = function ($container) {
       var touchState = $container.data(touchStateKey);
-      
+
       $container.css({
         'background-size': (touchState.currentZoom * 100) + '%',
         'background-position': -touchState.currentPosition.x + 'px ' + -touchState.currentPosition.y + 'px'
       });
     }
-    
+
     var loadHqImage = function ($target) {
       var $mouseZoom = $target.find('.jsZoomMouse');
       var $image = $target.find('img');
@@ -169,10 +169,10 @@
           'background-image': 'url(' + $image.attr('src') + ')'
         });
 
-        var hqImage = $target.attr('data-zoom');
+        var hqImage = $target.attr('src');
         if (hqImage) {
           var img = new Image();
-  
+
           img.onload = function () {
             $target.css({
               'background-image': 'url(' + hqImage + ')'
@@ -182,12 +182,12 @@
             });
             hqImageState = 'loaded';
           };
-  
-          img.src = $target.attr('data-zoom');
+
+          img.src = $target.attr('src');
         }
       }
     };
-    
+
     var toPoint = function (obj1, obj2) {
       if (typeof obj1.pageX === 'number' && typeof obj1.pageY === 'number') {
         return { x: obj1.pageX, y: obj1.pageY };
@@ -197,11 +197,11 @@
 
       throw 'Could not convert to point. Unrecognized object: ' + obj1;
     };
-    
+
     var copyPoint = function (point) {
       return { x: point.x, y: point.y }
     };
-    
+
     /**
      * Calculates the distance between two points
      */
@@ -212,7 +212,7 @@
       if (y < 0) { y *= -1; }
       return Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
     };
-    
+
     /**
      * Calculates the center point between two points
      */
@@ -221,7 +221,7 @@
       var y = point1.y - ((point1.y - point2.y) / 2);
       return [x, y];
     };
-    
+
     this.css({
       'position': 'relative',
       'background-repeat': 'no-repeat'
@@ -233,7 +233,7 @@
     this.find('img').css({'display': 'block'});
 
     this.append($('<div class="jsZoomMouse" style="display: none; position: absolute; height: 300px; width: 300px; z-index: 9999; border-radius: 200px; background-repeat: no-repeat;"/>'));
-    
+
     this.data(touchStateKey, {
       startPinch: 0,
       startZoom: 1,
