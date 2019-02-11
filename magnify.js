@@ -117,7 +117,7 @@ https://github.com/marcaube/bootstrap-magnify
      * ================ */
 
     $(window).on('load', function () {
-        $('[data-toggle="magnify"]').each(function () {
+        $('[data-toggle="magnify"], img.alignnone').each(function () {
             var $mag = $(this);
             $mag.magnify()
         })
