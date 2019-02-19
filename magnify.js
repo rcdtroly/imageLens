@@ -53,7 +53,7 @@ Add this to CSS file:
             this.nativeWidth = 0
             this.nativeHeight = 0
 
-            this.$element.wrapAll('<table><tr><td><div class="magnify"></div></td></tr></table>');
+            this.$element.wrapAll('<table class="magnify-container"><tr><td><div class="magnify"></div></td></tr></table>');
             this.$element.parent('.magnify').append('<div class="magnify-large" \>');
             this.$element.siblings(".magnify-large").css("background","url('" + this.$element.attr("src") + "') no-repeat");
 
